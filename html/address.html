@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>地址</title>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css"/>
+		<style type="text/css">
+			.wrap-search {
+				margin: 15px;
+				background: #E6E6E6;
+				height: 30px;
+				border-radius: 5px;
+				text-align: left;
+				padding-left: 15px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">选择收货地址</h1>
+			<a  class="mui-btn mui-btn-blue mui-btn-link mui-pull-right addressManage">地址管理</a>
+		</header>
+		<div class="mui-content">
+			<div class="wrap-search">
+				<span  style="line-height: 30px;color: #AAAAAA;font-size: 16px;">北京&nbsp;<span class="mui-icon mui-icon-arrowdown" style="font-size: 10px;"></span></span>
+				<span class="mui-icon mui-icon-search" style="line-height: 30px;color: #AAAAAA;font-size: 18px;"></span>
+				<span style="line-height: 30px;color: #AAAAAA;font-size: 14px;">小区/写字楼/学校</span>	
+			</div>
+			<div class="mui-card">
+				<p class="mui-content-padded">当前地址</p>
+				<p class="mui-content-padded"><strong id="Geolocation" class="UseThisAddress" style="font-size: 16px;color: black;"> 看丹南路榆园</strong><span class=" mui-pull-right relocation" onclick="getGeocode()" style="color: #007aff;"><span class="mui-icon mui-icon-location-filled" style="font-size: 16px;"></span>重新定位</span></p>	
+			</div>
+			<div class="mui-card">
+				<p class="mui-content-padded">收货地址</p>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<p class="mui-content-padded" style="font-size: 16px;color: black;font-weight: bold;">北京国家数字化出版基地</p>
+						<p class="mui-content-padded" style="color: black;">看丹南路凯特驾校对面</p>
+						<p class="mui-content-padded">玉石（先生）185186xxxxx</p>
+					</li>
+					<li class="mui-table-view-cell">
+						<p class="mui-content-padded" style="font-size: 16px;color: black;font-weight: bold;">北京国家数字化出版基地</p>
+						<p class="mui-content-padded" style="color: black;">看丹南路凯特驾校对面</p>
+						<p class="mui-content-padded">玉石（先生）185186xxxxx</p>
+					</li>
+				</ul>
+					<!--<p class="mui-content-padded" style="font-size: 16px;color: black;font-weight: bold;">北京国家数字化出版基地</p>
+					<p class="mui-content-padded" style="color: black;">看丹南路凯特驾校对面</p>
+					<p class="mui-content-padded">玉石（先生）185186xxxxx</p>-->
+			</div>
+			<div class="mui-card">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell"><a class=" mui-navigate-right" style="color: #007aff;">新增地址</a></li>	
+				</ul>
+			</div>
+			
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	
+	<script>
+		mui.init()
+	function geoInf( position ) {
+		var geoLocation = document.getElementById("Geolocation")
+		var addr = position.address;
+		var str = "";
+		str += "地址："+position.addresses+"\n";//获取地址信息
+		str += "坐标类型："+position.coordsType+"\n";
+		var timeflag = position.timestamp;//获取到地理位置信息的时间戳；一个毫秒数；
+		str += "时间戳："+timeflag+"\n";
+		var codns = position.coords;//获取地理坐标信息；
+		var lat = codns.latitude;//获取到当前位置的纬度；
+		str += "纬度："+lat+"\n";
+		var longt = codns.longitude;//获取到当前位置的经度
+		str += "经度："+longt+"\n";
+		var alt = codns.altitude;//获取到当前位置的海拔信息；
+		str += "海拔："+alt+"\n";
+		var accu = codns.accuracy;//地理坐标信息精确度信息；
+		str += "精确度："+accu+"\n";
+		var altAcc = codns.altitudeAccuracy;//获取海拔信息的精确度；
+		str += "海拔精确度："+altAcc+"\n";
+		var head = codns.heading;//获取设备的移动方向；
+		str += "移动方向："+head+"\n";
+		var sped = codns.speed;//获取设备的移动速度；
+		str += "移动速度："+sped;
+		
+		console.log(JSON.stringify(position));	
+		geoLocation.innerText= addr.district+addr.street+addr.poiName+"附近"
+	}
+	
+	function getGeocode(){
+		mui.toast("获取定位位置信息中");
+		plus.geolocation.getCurrentPosition( geoInf, function ( e ) {
+			mui.toast( "获取定位位置信息失败："+e.message );
+		},{geocode:true});
+		
+	}
+	
+	mui.plusReady(function(){
+	    
+		plus.geolocation.getCurrentPosition( geoInf, function ( e ) {
+			mui.toast( "获取定位位置信息失败："+e.message );
+		},{geocode:true});
+	});	
+	
+	</script>
+</html>

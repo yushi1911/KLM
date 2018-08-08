@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.js"></script>
+    <link href="../css/mui.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../css/custom.css"/>
+    
+    
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">我的订单</h1>
+	</header>
+	<div class="mui-content">
+		<div >
+			<ul class="mui-table-view">
+				<li class=" order-icon">
+					<a href="">
+						<span class="mui-icon mui-icon-home"><span class="mui-badge">5</span></span>
+						<p >待付款</p>
+					</a>
+				</li>
+				<li class=" order-icon">
+					<a href="">
+						<span class="mui-icon mui-icon-home"></span>
+						<p >待付款</p> 
+					</a>
+				</li>
+				<li class=" order-icon">
+					<a href="">
+						<span class="mui-icon mui-icon-home"></span>
+						<p >待付款</p>
+					</a>
+				</li>
+				<li class="order-icon">
+					<a href="">
+						<span class="mui-icon mui-icon-home"></span>
+						<p >待付款</p>
+					</a>
+				</li>
+				<li class="order-icon">
+					<a href="">
+						<span class="mui-icon mui-icon-home"></span>
+						<p >待付款</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="bottomend">	
+			<span>我是底线</span>	
+		</div>
+		
+	</div>
+		
+		<script src="../js/mui.js" ></script>
+		<script src="../js/mui.pullToRefresh.js"></script>
+		<script src="../js/mui.pullToRefresh.material.js"></script>
+		
+</body>
+</html>

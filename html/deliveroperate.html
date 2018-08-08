@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css"/>
+		<title></title>
+		<style type="text/css">
+			.chart {
+				height: 200px;
+				margin: 0px;
+				padding: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			
+			<h1 class="mui-title">运营数据</h1>	
+		</header>
+		<div class="mui-content">
+			<div class="mui-card">
+				<h4 class="mui-content-padded">今日数据</h4>
+				<div class="chart" id="barChart"></div>
+			</div>
+			<div class="mui-card">
+				<h4 class="mui-content-padded">本周数据</h4>
+				<div class="chart" id="lineChart"></div>
+			</div>
+			<div class="mui-card">
+				<h4 class="mui-content-padded">当月数据</h4>
+				<div class="chart" id="pieChart"></div>
+			</div>
+			<div class="mui-card">
+				<h4 class="mui-content-padded">数据趋势</p>
+				<div class="chart" id="barChart2"></div>
+			</div>
+		</div>
+	</body>
+	<script src="../js/echarts-all.js"></script>
+	<script>
+			var getOption = function(chartType) {
+				var chartOption = chartType == 'pie' ? {
+					calculable: false,
+					series: [{
+						name: '访问来源',
+						type: 'pie',
+						radius: '65%',
+						center: ['50%', '50%'],
+						data: [{
+							value: 335,
+							name: '直接访问'
+						}, {
+							value: 310,
+							name: '邮件营销'
+						}, {
+							value: 234,
+							name: '联盟广告'
+						}, {
+							value: 135,
+							name: '视频广告'
+						}, {
+							value: 1548,
+							name: '搜索引擎'
+						}]
+					}]
+				} : {
+					legend: {
+						data: ['收藏量', '浏览量','访客数','订单量']
+					},
+					grid: {
+						x: 35,
+						x2: 10,
+						y: 30,
+						y2: 25
+					},
+					toolbox: {
+						show: false,
+						feature: {
+							mark: {
+								show: true
+							},
+							dataView: {
+								show: true,
+								readOnly: false
+							},
+							magicType: {
+								show: true,
+								type: ['line', 'bar']
+							},
+							restore: {
+								show: true
+							},
+							saveAsImage: {
+								show: true
+							}
+						}
+					},
+					calculable: false,
+					xAxis: [{
+						type: 'category',
+						data: ['1时', '3时', '5时', '7时', '9时', '11时', '13时', '15时', '17时', '19时', '21时', '23时']
+					}],
+					yAxis: [{
+						type: 'value',
+						splitArea: {
+							show: true
+						}
+					}],
+					series: [{
+						name: '收藏量',
+						type: chartType,
+						data: [1.0, 2.9, 2.0, 13.2, 15.6, 36.7, 55.6, 72.2, 12.6, 10.0, 3.4, 1.3]
+					}, {
+						name: '浏览量',
+						type: chartType,
+						data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+					},{
+						name: '访客数',
+						type: chartType,
+						data: [10.6, 50.9, 90.0, 260.4, 280.7, 170.7, 275.6, 382.2, 248.7, 218.8, 106.0, 50.3]
+					},{
+						name: '订单量',
+						type: chartType,
+						data: [0.6, 3.9, 7.0, 18.4, 22.7, 50.7, 105.6, 130.2, 61.7, 44.8, 20.0, 10.3]
+					}]
+				};
+				return chartOption;
+			};
+			var byId = function(id) {
+				return document.getElementById(id);
+			};
+			var barChart = echarts.init(byId('barChart'));
+			barChart.setOption(getOption('bar'));
+			var lineChart = echarts.init(byId('lineChart'));
+			lineChart.setOption(getOption('line'));
+			var pieChart = echarts.init(byId('pieChart'));
+			pieChart.setOption(getOption('pie'));
+			var barChart2 = echarts.init(byId('barChart2'));
+			barChart2.setOption(getOption('pie'));
+//			byId("echarts").addEventListener('tap',function(){
+//				var url = this.getAttribute('data-url');
+//				plus.runtime.openURL(url);
+//			},false);
+
+
+		</script>
+</html>

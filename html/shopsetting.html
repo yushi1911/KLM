@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/setting.css"/>
+		<style type="text/css">
+			.mui-views,
+			.mui-view,
+			.mui-pages,
+			.mui-page,
+			.mui-page-content {
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				width: 100%;
+				height: 100%;
+				background-color: #FFFFFF;
+			}
+			.mui-pages {
+				top: 44px;
+				height: auto;
+			}
+			.mui-scroll-wrapper,
+			.mui-scroll {
+				background-color: #FFFFFF;
+			}
+			.mui-page.mui-transitioning {
+				-webkit-transition: -webkit-transform 300ms ease;
+				transition: transform 300ms ease;
+			}
+			.mui-page-left {
+				-webkit-transform: translate3d(0, 0, 0);
+				transform: translate3d(0, 0, 0);
+			}
+			.mui-ios .mui-page-left {
+				-webkit-transform: translate3d(-20%, 0, 0);
+				transform: translate3d(-20%, 0, 0);
+			}
+			.mui-navbar {
+				position: fixed;
+				right: 0;
+				left: 0;
+				z-index: 10;
+				height: 44px;
+				background-color: #3673ff;
+				
+			}
+			.mui-bar{
+				-webkit-box-shadow: 0 0 0px rgba(0,0,0,0);
+				box-shadow: 0 0 0px rgba(0,0,0,0);\
+				
+			}
+			.mui-navbar .mui-bar {
+				position: absolute;
+				background: transparent;
+				border:none;
+				box-sizing: border-box;
+				-webkit-box-shadow:0px ;
+				box-shadow:0px;
+				/*text-align: center;*/
+			}
+			.mui-android .mui-navbar-inner.mui-navbar-left {
+				opacity: 0;
+			}
+			.mui-ios .mui-navbar-left .mui-left,
+			.mui-ios .mui-navbar-left .mui-center,
+			.mui-ios .mui-navbar-left .mui-right {
+				opacity: 0;
+			}
+			.mui-navbar .mui-btn-nav {
+				-webkit-transition: none;
+				transition: none;
+				-webkit-transition-duration: .0s;
+				transition-duration: .0s;
+			}
+			.mui-navbar .mui-bar .mui-title {
+				display: inline-block;
+				width: auto;
+				text-align: justify;
+				color: #FFFFFF;
+				
+			}
+			.mui-page-shadow {
+				position: absolute;
+				right: 100%;
+				top: 0;
+				width: 16px;
+				height: 100%;
+				z-index: -1;
+				content: '';
+			}
+			.mui-page-shadow {
+				background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, .01) 50%, rgba(0, 0, 0, .2) 100%);
+				background: linear-gradient(to right, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, .01) 50%, rgba(0, 0, 0, .2) 100%);
+			}
+			.mui-navbar-inner.mui-transitioning,
+			.mui-navbar-inner .mui-transitioning {
+				-webkit-transition: opacity 300ms ease, -webkit-transform 300ms ease;
+				transition: opacity 300ms ease, transform 300ms ease;
+			}
+			.mui-page {
+				display: none;
+			}
+			.mui-pages .mui-page {
+				display: block;
+			}
+			/*.mui-page .mui-table-view:first-child {
+				margin-top: 15px;
+			}
+			.mui-page .mui-table-view:last-child {
+				margin-bottom: 30px;
+			}
+			.mui-table-view {
+				margin-top: 20px;
+			}*/
+			
+			.mui-table-view span.mui-pull-right {
+				color: #999;
+			}
+			.mui-table-view-divider {
+				background-color: #efeff4;
+				font-size: 14px;
+			}
+			.mui-table-view-divider:before,
+			.mui-table-view-divider:after {
+				height: 0;
+			}
+			.head {
+				height: 40px;
+			}
+			#head {
+				line-height: 40px;
+			}
+			.mui-table-view .mui-media-object,.head-img {
+				width: 80px;
+				max-width: 80px;
+				height: 80px;
+				line-height: 80px;
+				border-radius: 50%;
+				border: 2px solid white;
+			}
+			
+			
+			
+			
+			#head-img1 {
+				position: absolute;
+				bottom: 10px;
+				right: 40px;
+				width: 40px;
+				height: 40px;
+			}
+			.update {
+				font-style: normal;
+				color: #999999;
+				margin-right: -25px;
+				font-size: 15px
+			}
+			.mui-fullscreen {
+				position: fixed;
+				z-index: 20;
+				background-color: #000;
+			}
+			.mui-ios .mui-navbar .mui-bar .mui-title {
+				position: static;
+			}
+			
+			
+			.mui-table-view .mui-media-object,.head-img {
+				width: 80px;
+				max-width: 80px;
+				height: 80px;
+				line-height: 80px;
+				border-radius: 20px;
+				border: 2px solid white;
+			}
+			.accont-info{
+				margin: 0;
+				height: auto;
+			}
+			.accont-info .mui-input-row{
+				clear: right;
+				margin-bottom: 5px;
+			}
+			.accont-info .mui-input-row .mui-switch{
+				
+				margin-top: 0;
+			}
+			.accont-info .mui-input-row .mui-switch.mui-active:before{
+				content: '营业';
+				left: 11px;
+			}
+			.accont-info .mui-input-row .mui-switch:before{
+				content: '休息';
+			}
+			.accont-info .OperationStatue{
+				color: white;
+				font-size: 16px;
+				font-weight: bold;
+				line-height: 30px;
+			}
+			.accont-info .shopFundInfo p{
+				font-size: 14px;
+				color: #000000;
+				
+			}
+		</style>
+		<title></title>
+	</head>
+	<body class="mui-fullscreen">
+		<!--页面主结构开始-->
+		<div id="shop-setting" class="mui-views">
+			<div class="mui-view">
+				<div class="mui-navbar">
+				</div>
+				<div class="mui-pages">
+				</div>
+			</div>
+		</div>
+		<!--页面主结构结束-->
+		<!--单页面开始-->
+		<div id="shopsetting" class="mui-page">
+			<div class="mui-bar mui-bar-nav">
+				
+				<h1 class="mui-title">我是商家</h1>
+				<!--<a  class="mui-btn mui-btn-blue mui-btn-link mui-pull-right addressManage">地址管理</a>-->
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div class="accont-info">
+							<a href="#shopaccont">
+								<img class="mui-media-object mui-pull-left head-img" id="head-img-shop" src="">
+								<div class="mui-media-body">
+									<p class='accont-'><b>{{维久云666}}</b><span>会员</span></p>
+									<div class="mui-input-row">
+										<span class="OperationStatue">运营状态</span>
+										<div class="mui-switch mui-switch mui-active">
+											<span class="mui-switch-handle mui-pull-right"></span>
+										</div>
+									</div>
+									<p class="mui-progressbar mui-progressbar-warning" data-progress="50">
+										<span style="transform: translate3d(-70%, 0px, 0px);"></span>
+									</p>
+									<p class='mui-ellipsis'>当前1000成长值，还需600成长值可升级到金牌会员</p>
+								</div>
+							</a>
+								<!--<div class="accont-detail">
+									<li><span id="moneyleft">100000.00元</span><p>余额</p></li>
+									<li><span id="redbag">10个</span><p>红包</p></li>
+									<li><span id="score">1010分</span><p>积分</p></li>
+								</div>-->
+								
+						</div>
+						<div class="shopFundInfo">
+									<p class="mui-content-padded">总资产:&nbsp;<span id="totalasset">8888888元</span><span class="mui-icon mui-icon-eye mui-pull-right"></span></p>
+									<ul class="mui-table-view mui-grid-view mui-grid-9">
+										<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4"><span id="moneyleft">10000.00元</span><p>余额</p></li>
+										<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4"><span id="redbag">10元</span><p>未到账</p></li>
+										<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4"><span id="score">1010分</span><p>积分</p></li>
+									</ul>
+								</div>
+						<div class="mui-card">
+							<ul class="mui-table-view">
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right">
+										<span class="mui-icon mui-icon-navigate"></span>商品管理
+									</a>
+								</li>
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right">
+										<span class="mui-icon mui-icon-navigate"></span>商品评价
+									</a>
+								</li>
+							</ul>
+						</div>
+						
+						<div class="mui-card">
+							<ul class="mui-table-view">
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right">
+										<span class="mui-icon mui-icon-home"></span>我的活动
+									</a>
+								</li>
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right">
+										<span class="mui-icon mui-icon-home"></span>我的等级
+									</a>
+								</li>
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right">
+										<span class="mui-icon mui-icon-home"></span>我的消息
+									</a>
+								</li>
+							</ul>
+						</div>
+						
+						<div class="mui-card">
+							<ul class="mui-table-view">
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right">
+										<span class="mui-icon mui-icon-home"></span>店铺设置
+									</a>
+								</li>
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right">
+										<span class="mui-icon mui-icon-home"></span>登录密码
+									</a>
+								</li>
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right">
+										<span class="mui-icon mui-icon-home"></span>身份认证
+									</a>
+								</li>
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right">
+										<span class="mui-icon mui-icon-home"></span>服务范围
+									</a>
+								</li>
+								
+							</ul>
+						</div>
+						
+						
+						<div class="mui-card">
+							<ul class="mui-table-view">
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right">
+										<span class="mui-icon mui-icon-navigate"></span>客服帮助
+									</a>
+								</li>
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right">
+										<span class="mui-icon mui-icon-navigate"></span>意见反馈
+									</a>
+								</li>
+							</ul>
+						</div>
+						
+					</div>
+				</div>
+	
+			</div>
+		</div>
+		
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/mui.view.js "></script>
+	<script>
+		mui.init({});
+		
+		//初始化单页view
+		var viewApi = mui('#shop-setting').view({
+			defaultPage: '#shopsetting',	
+		});
+		
+		//初始化单页的区域滚动
+		mui('.mui-scroll-wrapper').scroll({indicators:false,bounce: false});
+		
+		mui('.mui-page-content .mui-switch').each(function() { //循环所有toggle
+				//toggle.classList.contains('mui-active') 可识别该toggle的开关状态
+				this.parentNode.querySelector('span').innerText = '运营状态：' + (this.classList.contains('mui-active') ? '营业中' : '休息中');
+				/**
+				 * toggle 事件监听
+				 */
+				this.addEventListener('toggle', function(event) {
+					//event.detail.isActive 可直接获取当前状态
+					this.parentNode.querySelector('span').innerText = '运营状态：' + (event.detail.isActive ? '营业中' : '休息中');
+				});
+			});
+		
+		setTimeout(function () {
+			defaultImg();
+			setTimeout(function() {
+				initImgPreview();
+			}, 300);
+		},500);
+		//更换头像
+		mui(".mui-table-view-cell").on("tap", "#head", function(e) {
+			if(mui.os.plus){
+				var a = [{
+					title: "拍照"
+				}, {
+					title: "从手机相册选择"
+				}];
+				plus.nativeUI.actionSheet({
+					title: "修改头像",
+					cancel: "取消",
+					buttons: a
+				}, function(b) {
+					switch (b.index) {
+						case 0:
+							break;
+						case 1:
+							getImage();
+							break;
+						case 2:
+							galleryImg();
+							break;
+						default:
+							break
+					}
+				})	
+			}
+			
+		});
+				function getImage() {
+			var c = plus.camera.getCamera();
+			c.captureImage(function(e) {
+				plus.io.resolveLocalFileSystemURL(e, function(entry) {
+					var s = entry.toLocalURL() + "?version=" + new Date().getTime();
+					console.log(s);
+					document.getElementById("head-img-shop").src = s;
+					document.getElementById("head-img1").src = s;
+					//变更大图预览的src
+					//目前仅有一张图片，暂时如此处理，后续需要通过标准组件实现
+					document.querySelector("#__mui-imageview__group .mui-slider-item img").src = s + "?version=" + new Date().getTime();;;
+				}, function(e) {
+					console.log("读取拍照文件错误：" + e.message);
+				});
+			}, function(s) {
+				console.log("error" + s);
+			}, {
+				filename: "_doc/head.jpg"
+			})
+		}
+
+		function galleryImg() {
+			plus.gallery.pick(function(a) {
+				plus.io.resolveLocalFileSystemURL(a, function(entry) {
+					plus.io.resolveLocalFileSystemURL("_doc/", function(root) {
+						root.getFile("head.jpg", {}, function(file) {
+							//文件已存在
+							file.remove(function() {
+								console.log("file remove success");
+								entry.copyTo(root, 'head.jpg', function(e) {
+										var e = e.fullPath + "?version=" + new Date().getTime();
+										document.getElementById("head-img-shop").src = e;
+										document.getElementById("head-img1").src = e;
+										//变更大图预览的src
+										//目前仅有一张图片，暂时如此处理，后续需要通过标准组件实现
+										document.querySelector("#__mui-imageview__group .mui-slider-item img").src = e + "?version=" + new Date().getTime();;
+									},
+									function(e) {
+										console.log('copy image fail:' + e.message);
+									});
+							}, function() {
+								console.log("delete image fail:" + e.message);
+							});
+						}, function() {
+							//文件不存在
+							entry.copyTo(root, 'head.jpg', function(e) {
+									var path = e.fullPath + "?version=" + new Date().getTime();
+									document.getElementById("head-img-shop").src = path;
+									document.getElementById("head-img1").src = path;
+									//变更大图预览的src
+									//目前仅有一张图片，暂时如此处理，后续需要通过标准组件实现
+									document.querySelector("#__mui-imageview__group .mui-slider-item img").src = path;
+								},
+								function(e) {
+									console.log('copy image fail:' + e.message);
+								});
+						});
+					}, function(e) {
+						console.log("get _www folder fail");
+					})
+				}, function(e) {
+					console.log("读取拍照文件错误：" + e.message);
+				});
+			}, function(a) {}, {
+				filter: "image"
+			})
+		};
+
+		function defaultImg() {
+			if(mui.os.plus){
+				plus.io.resolveLocalFileSystemURL("_doc/head.jpg", function(entry) {
+					var s = entry.fullPath + "?version=" + new Date().getTime();;
+					document.getElementById("head-img-shop").src = s;
+					document.getElementById("head-img1").src = s;
+				}, function(e) {
+					document.getElementById("head-img-shop").src = '../images/logo.png';
+					document.getElementById("head-img1").src = '../images/logo.png';
+				})
+			}else{
+				document.getElementById("head-img-shop").src = '../images/logo.png';
+				document.getElementById("head-img1").src = '../images/logo.png';
+			}
+			
+		}
+		function initImgPreview() {
+			var imgs = document.querySelectorAll("img.mui-action-preview");
+			imgs = mui.slice.call(imgs);
+			if (imgs && imgs.length > 0) {
+				var slider = document.createElement("div");
+				slider.setAttribute("id", "__mui-imageview__");
+				slider.classList.add("mui-slider");
+				slider.classList.add("mui-fullscreen");
+				slider.style.display = "none";
+				slider.addEventListener("tap", function() {
+					slider.style.display = "none";
+				});
+				slider.addEventListener("touchmove", function(event) {
+					event.preventDefault();
+				})
+				var slider_group = document.createElement("div");
+				slider_group.setAttribute("id", "__mui-imageview__group");
+				slider_group.classList.add("mui-slider-group");
+				imgs.forEach(function(value, index, array) {
+					//给图片添加点击事件，触发预览显示；
+					value.addEventListener('tap', function() {
+						slider.style.display = "block";
+						_slider.refresh();
+						_slider.gotoItem(index, 0);
+					})
+					var item = document.createElement("div");
+					item.classList.add("mui-slider-item");
+					var a = document.createElement("a");
+					var img = document.createElement("img");
+					img.setAttribute("src", value.src);
+					a.appendChild(img)
+					item.appendChild(a);
+					slider_group.appendChild(item);
+				});
+				slider.appendChild(slider_group);
+				document.body.appendChild(slider);
+				var _slider = mui(slider).slider();
+			}
+		}
+	</script>
+</html>

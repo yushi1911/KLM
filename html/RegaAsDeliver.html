@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+		<link href="../css/mui.picker.css" rel="stylesheet" />
+		<link href="../css/mui.poppicker.css" rel="stylesheet" />
+		<style type="text/css">
+			.ui-alert {
+				text-align: center;
+				padding: 20px 10px;
+				font-size: 12px;
+				line-height: 30px;
+			}
+			.PayDeposit{
+				background-color: #fff6d2;
+				color: #000000;
+				line-height: 40px;
+				font-size: 16px;
+				padding-left: 10px;
+			}
+
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">骑手信息审核</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-card">
+				<form class="mui-input-group">
+					<div class="mui-input-row">
+						<label>联系人：</span></label>
+						<input type="text" class="mui-input-clear" placeholder="姓名" />
+					</div>
+					<div class="mui-input-row">
+						<label>身份证：</span></label>
+						<input type="text" class="mui-input-clear" placeholder="身份证号码" />
+					</div>
+						<ul class="mui-table-view mui-grid-view mui-grid-9" style="background-color: white;">
+					        <li class="mui-table-view-cell mui-media mui-col-xs-6 mui-col-sm-6">
+					            	<a class="mui-content-padded" style="background-color: #F2F2F2;">
+					                    <span class="mui-icon mui-icon-camera"></span>
+					                    <div class="mui-media-body">手持身份证<strong>正面</strong>照</div>
+					            	</a>
+					        </li>
+					        <li class="mui-table-view-cell mui-media mui-col-xs-6 mui-col-sm-6">
+					            	<a style="background-color: #F2F2F2;">
+					                    <span class="mui-icon mui-icon-camera"></span>
+					                    <div class="mui-media-body">手持身份证<strong>背面</strong>照</div>
+					            	</a>
+					        </li>
+					    </ul>
+					    <p class="mui-content-padded"><button id='showCityPicker' class="mui-btn mui-btn-outlined" type="button">选择所在地区</button><span id='cityResult' class="ui-alert"></span></p>
+				
+				</form>
+			</div>
+			
+				<p class="mui-content-padded PayDeposit"><span class="mui-icon mui-icon-info">&nbsp;</span>保证金缴纳：<span style="color: crimson;font-weight: bold;">100元</span>&nbsp;&nbsp;<span style="font-size: 14px;">押金随心退，安全快速到账</span></p>
+				<div class="mui-card-content-inner">
+					<p class="mui-h4">收款人：廖晴</p>
+					<p class="mui-h4">收款账户：6220&nbsp;&nbsp;2635&nbsp;&nbsp;6598&nbsp;&nbsp;111</p>
+				</div>
+				<div class="mui-card-content-inner mui-text-center ">
+					<button class="mui-btn mui-btn-outlined">上传汇款凭证</button>
+					
+			
+				
+			</div>
+			<div class="mui-content-padded mui-input-row mui-radio mui-left">
+				<label>信息提交后，请在个人中心查看审核信息</label>
+				<input type="radio" checked="checked"/>
+			</div>
+			<div class="mui-content-padded">
+				<button class="mui-btn mui-btn-block mui-btn-primary">立刻提交</button>
+			</div>
+			
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/mui.picker.js"></script>
+	<script src="../js/mui.poppicker.js"></script>
+	
+	<script src="../js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+			(function($, doc) {
+				$.init();
+				$.ready(function() {
+					/**
+					 * 获取对象属性的值
+					 * 主要用于过滤三级联动中，可能出现的最低级的数据不存在的情况，实际开发中需要注意这一点；
+					 * @param {Object} obj 对象
+					 * @param {String} param 属性名
+					 */
+					var _getParam = function(obj, param) {
+						return obj[param] || '';
+					};
+					//					//级联示例
+					var cityPicker = new $.PopPicker({
+						layer: 3
+					});
+					cityPicker.setData(cityData3);
+					var showCityPickerButton = doc.getElementById('showCityPicker');
+					var cityResult = doc.getElementById('cityResult');
+					showCityPickerButton.addEventListener('tap', function(event) {
+						cityPicker.show(function(items) {
+							cityResult.innerText =  _getParam(items[0], 'text') + " " + _getParam(items[1], 'text') + " " + _getParam(items[2], 'text');
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false);
+				});
+			})(mui, document);
+		</script>
+</html>

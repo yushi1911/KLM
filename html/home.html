@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title></title>
+    <script src="../js/mui.js"></script>
+    <script type="text/javascript" src="../js/vue.min.js" ></script>
+    <script type="text/javascript" src="../js/vue.min.js" ></script>
+    <link href="../css/mui.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../css/icons-extra.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/custom.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/home-item-list.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+    <style>
+    	.wrap-search {
+				margin-left: 5px;
+				background: #E6E6E6;
+				height: 30px;
+				border-radius: 5px;
+				text-align: center;
+			}
+		#generalSort{
+			position: absolute;
+			top: 550px;
+			left: 16px;
+		}
+		.mui-popover {
+			height: 300px;
+		}
+		
+		.flex-container {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row wrap;
+				justify-content: space-between;
+				text-align: center;
+			}
+		.mui-content-padded a {
+				margin: 3px;
+				width: 60px;
+				height: 60px;
+				line-height: 40px;
+				display: inline-block;
+				text-align: center;
+				background-color: #fff;
+				border: 1px solid #ddd;
+				border-radius: 50%;
+				background-clip: padding-box;
+				box-shadow:0 1px 1px rgba(0,0,0,0.2)
+			}
+			.mui-content-padded a .mui-icon {
+				margin-top: 12px;
+			}
+			.customIcon{
+				color: mediumpurple;
+				color: white;
+				font-size: 30px;
+				margin-bottom: 10px;
+			}
+			.SortingBar{
+				position: fixed;
+				top: 44px;
+				
+				width: 100%;
+				height: 50px;
+				z-index: 100;
+			}
+    </style>
+    
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav" id="HeaderHere">
+		<li class="HeaderLeft to-location "><a id="HomeGeolocation">北京<span class="mui-icon mui-icon-arrowdown "></span></a></li>
+		<li class="HeaderMiddle"> 
+			<span class="wrap-search  mui-icon mui-icon-search" style="padding: 0; line-height: 30px;color: #AAAAAA;font-size: 16px;">热门词汇</span>
+			<span style="line-height: 30px;color: #AAAAAA;font-size: 14px;"></span>
+		</li>
+		<li class="HeaderRight">
+			<span class=" mui-icon-extra mui-icon-extra-cart" style="font-size: 30px;"><span class="mui-badge mui-badge-danger">5</span></span>
+		</li>
+	</header>
+	<div class="mui-content">
+		<div class="SortingBar" id="SortingBar">
+			<ul class="mui-table-view mui-grid-view" >
+				<li class="mui-table-view-cell mui-media mui-col-xs-3" style="font-size: 14px;"><a href="#generalSort" id="GSortHere">综合排序<span class="mui-icon mui-icon-arrowdown" style="font-size: 6px;"></span></a></li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3" style="font-size: 14px;"><a>好评优先</a></li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3" style="font-size: 14px;"><a @tap="">距离最近</a></li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3"  style="font-size: 14px;">筛选<span class="mui-icon mui-icon-compose"></span></li>
+			</ul>
+		</div>
+		
+		<div id="slider" class="mui-slider">
+			<div class="mui-slider-group mui-slider-loop">
+				<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#">
+						<img src="../images/banner-3.jpg">
+					</a>
+				</div>
+				<!-- 第一张 -->
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="../images/banner01.jpg">
+					</a>
+				</div>
+				<!-- 第二张 -->
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="../images/banner-1.jpg">
+					</a>
+				</div>
+				<!-- 第三张 -->
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="../images/banner-2.jpg">
+					</a>
+				</div>
+				<!-- 第四张 -->
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="../images/banner-3.jpg">
+					</a>
+				</div>
+				<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#">
+						<img src="../images/banner01.jpg">
+					</a>
+				</div>
+			</div>
+			<div class="mui-slider-indicator">
+				<div class="mui-indicator mui-active"></div>
+				<div class="mui-indicator"></div>
+				<div class="mui-indicator"></div>
+				<div class="mui-indicator"></div>
+			</div>
+		</div>
+		<div class="mui-content-padded " style="height: 80px;">
+			<div class="flex-container">
+				<a style="background: -webkit-linear-gradient(skyblue, blue);background: linear-gradient(skyblue, blue);   ">
+					<span class="mui-icon iconfont icon-pinpaijieshao customIcon"></span>
+					<p>品牌介绍</p>
+				</a>
+				<a style="background: -webkit-linear-gradient(coral, lightcoral);background: linear-gradient(coral, lightcoral);   ">
+					<span class="mui-icon iconfont icon-icon customIcon" ></span>
+					<p>我的会员</p>
+				</a>
+				<a style="background: -webkit-linear-gradient(greenyellow, yellowgreen);background: linear-gradient(greenyellow, yellowgreen);   ">
+					<span class="mui-icon iconfont icon-tuijianyouli customIcon" ></span>
+					<p>推荐有礼</p>
+				</a>
+				<a style="background: -webkit-linear-gradient(mediumpurple, purple);background: linear-gradient(mediumpurple, purple);   ">
+					<span class="mui-icon iconfont icon-ruzhu customIcon"></span>
+					<p>商家入驻</p>
+				</a>
+			</div>
+			
+		</div>
+		
+		<div>
+			<ul class="mui-table-view mui-grid-view">
+				<h4 style="margin-top: 0;padding-top: 10px;">&nbsp;&nbsp;优惠精选</h4>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-6">
+		            <a href="#">
+		                <img class="mui-media-object" src="../images/mix.jpg" style="border-radius: 5px;" height="100%" >
+		            </a>
+		        </li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-6">
+		            <div>
+		            	<a href="#" style="margin: 0;padding: 0;">
+			                <img class="mui-media-object" src="../images/muwu.jpg" style="border-radius: 5px;">
+			            </a>
+		            </div>
+		            <div style="border-radius: 5px;">
+		            	<a href="#" >
+			                <img class="mui-media-object" src="../images/muwu.jpg" style="border-radius: 5px;">
+			            </a>
+		            </div>
+		            
+		        </li>
+		        
+		        
+		    </ul>    
+		</div>
+						<h4 style="margin-top: 0;padding-top: 10px;">&nbsp;&nbsp;推荐网点</h4>
+				<div>
+					<ul class="mui-table-view mui-grid-view" >
+						<li class="mui-table-view-cell mui-media mui-col-xs-3 GeneralSort" style="font-size: 14px;"><a>综合排序<span class="mui-icon mui-icon-arrowdown" style="font-size: 6px;"></span></a></li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-3" style="font-size: 14px;"><a href="#SortingBar" id="testTap">好评优先</a></li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-3" style="font-size: 14px;">距离最近</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-3" id="GSortHere" style="font-size: 14px;">筛选<span class="mui-icon mui-icon-compose"></span></li>
+					</ul>
+				</div>
+				
+				
+		<div id="refreshContainer">
+			<ul id="shops" class="mui-table-view">
+				<li class="mui-table-view-cell shop-list-item " v-for="item in shops" @tap="open_detail(item)">
+					<img class="mui-media-object mui-pull-left" :src="item.cover">
+					<div class="mui-media-body">
+						<div class="mui-ellipsis"><b>{{item.title}}</b><span class="orderinright">{{item.EstimatedTime}}分钟&nbsp;&nbsp;{{item.distance}}km</span></div>
+						<div class="mui-ellipsis"><span class="mui-icon mui-icon-star-filled"></span>
+							<span class="mui-icon mui-icon-star-filled"></span>
+							<span class="mui-icon mui-icon-star-filled"></span>
+							<span class="mui-icon mui-icon-star-filled"></span>
+							<span class="mui-icon mui-icon-star-filled"></span>
+							&nbsp;&nbsp;<span>月售:{{item.monthsales}}</span>
+							<span  class="mui-btn mui-btn-primary orderinright">平台专送</span>
+						</div>
+						<div class="mui-ellipsis">
+							<span class="">起送价格:￥</span>&nbsp;
+							<span class="">{{item.canstartfee}}</span>&nbsp;&nbsp;
+							<span class="">配送费用:￥ </span><em class="">{{item.deliverfee}}</em>
+							<span class="mui-btn mui-btn-primary mui-btn-outlined mui-pull-right">客户自提</span>
+							
+						</div>
+						<p>
+							<span class="mui-btn mui-btn-primary ">免配</span>满30元免配送费&nbsp;&nbsp;<span class="mui-btn mui-btn-danger">满减</span>满30元减3元</br>
+							<span class="mui-btn mui-btn-green">会员</span>满30元减3元&nbsp;&nbsp;<span class="mui-btn mui-btn-yellow">首单</span>首单减3元</br>
+						</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div id="generalSort" class="mui-popover" >
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							<a href="#">综合排序</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a href="#">销量最高</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a href="#">起送价最低</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a href="#">配送最快</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a href="#">配送费最低</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a href="#">人均从低到高</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a href="#">人均从高到低</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+		
+		<script src="../js/localstorageInit.js"></script>
+		<script type="text/javascript" charset="utf-8">
+		window.onscroll = function(){
+			var t = document.documentElement.scrollTop || document.body.scrollTop;  //获取距离页面顶部的距离
+     		var SortingBar = document.getElementById( "SortingBar" ); //获取div元素
+     		 if( t >= 558 ) { //当距离顶部超过558px时
+		        SortingBar.style.display='block';//使div距离底部30px，也就是向上出现
+		     } else { //如果距离顶部小于300px
+		        SortingBar.style.display='none';//使div向下隐藏
+		     } 
+		}
+		LSinit()
+		var shop_detail=null;
+		var scroll = mui('window').scroll(); 
+		
+
+		var name;
+		mui.plusReady(function() {
+			
+			plus.geolocation.getCurrentPosition( geoInf, function ( e ) {
+			mui.toast( "获取定位位置信息失败："+e.message );
+			},{geocode:true});
+				//给detailPage赋值,根据ID获取详情页面
+				detailPage = plus.webview.getWebviewById('shopDetail');
+				if(!shop_detail){
+					shop_detail = mui.preload({
+						id:'shopDetail',
+						url:'shopDetail.html'
+					});
+				}
+				name = plus.webview.currentWebview().name;
+				
+			});
+		
+		var loca = JSON.parse(localStorage.getItem("GEOlocation"))
+		for (var item in loca){
+			console.log(item)
+		}
+		
+		
+		var data_shops = new Vue({
+				el: '#shops',
+				data: {
+					shops: []
+				}
+			});
+			mui.init({
+				pullRefresh: {
+					container: "#refreshContainer", //下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+//					down: {
+//						auto: false, //可选,默认false.首次加载自动下拉刷新一次
+//						callback: function(){
+//							if(window.plus && plus.networkinfo.getCurrentType() === plus.networkinfo.CONNECTION_NONE) {
+//								plus.nativeUI.toast('似乎已断开与互联网的连接', {
+//									verticalAlign: 'top'
+//								});
+//								return;
+//							//请求数据列表接口	
+//							mui.getJSON('https://api.douban.com/v2/movie/in_theaters', {
+//									start:0,
+//									count:10
+//								}, function(resp) {
+//									data_shops.shops.splice(0,data_shops.shops.length);
+//									data_shops.shops = data_shops.shops.concat(convert(resp.subjects));
+//									data_shops.shops.sort(compare('deliverfee'))
+//									mui('#refreshContainer').pullRefresh().endPullupToRefresh();
+//									mui('#refreshContainer').pullRefresh().refresh(true);
+//									
+//								});
+//							}
+//						} //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+//					},
+					up: {
+						height: 50, //可选.默认50.触发上拉加载拖动距离
+						auto: true, //可选,默认false.自动上拉加载一次
+						contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
+						contentnomore: '没有更多数据了', //可选，请求完毕若没有更多数据时显示的提醒内容；
+						callback: function(){
+							if(window.plus && plus.networkinfo.getCurrentType() === plus.networkinfo.CONNECTION_NONE) {
+								plus.nativeUI.toast('似乎已断开与互联网的连接', {
+									verticalAlign: 'top'
+								});
+								return;
+							}
+							//请求下一页数据
+							mui.getJSON('https://api.douban.com/v2/movie/in_theaters', {
+								start:data_shops.shops.length,
+								count:10
+							}, function(resp) {
+								data_shops.shops = data_shops.shops.concat(convert(resp.subjects));
+								data_shops.shops.sort(compare('deliverfee'))
+								mui('#refreshContainer').pullRefresh().endPullupToRefresh(data_shops.shops.length >= resp.total);
+							});
+							
+						}  //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+					}
+				}
+			});
+			
+			
+			function open_detail(item){
+				//触发详情页面的movieId事件
+				mui.fire(shop_detail,'shopId',{
+					id:item.id
+				});
+				//打开
+				mui.openWindow({
+					id:'shopDetail'
+				});
+			}
+			
+			//按距离排序
+			function compare(property){
+			    return function(a,b){
+			        var value1 = a[property];
+			        var value2 = b[property];
+			        return value1 - value2;
+			    }
+			}
+			
+			//数据转换
+			function convert(items) {
+				var newItems = [];
+				//遍历items
+				items.forEach(function(item) {
+					var genres = item.genres.toString().replace(/,/g, ' / ');
+					//导演
+					var directors = '';
+					for(var i = 0; i < item.directors.length; i++) {
+						directors += item.directors[i].name;
+						if(i != item.directors.length - 1) {
+							directors += ' / ';
+						}
+					}
+					//演员
+					var casts = '';
+					for(var i = 0; i < item.casts.length; i++) {
+						casts += item.casts[i].name;
+						if(i != item.casts.length - 1) {
+							casts += ' / ';
+						}
+					}
+
+					newItems.push({
+						id: item.id,
+						title: item.title,
+						genres: genres,
+						cover: item.images.large,
+						deliverfee: item.rating.average,
+						canstartfee:item.rating.stars,
+						directors: directors,
+						casts: casts,
+						monthsales:item.collect_count,
+						distance:item.rating.average,
+						EstimatedTime:item.rating.stars
+					});
+				});
+
+				return newItems;
+			};
+			
+			function geoInf( position ) {
+				var geoLocation = document.getElementById("HomeGeolocation")
+				var addr = position.address;
+				var str = "";
+				str += "地址："+position.addresses+"\n";//获取地址信息
+				str += "坐标类型："+position.coordsType+"\n";
+				var timeflag = position.timestamp;//获取到地理位置信息的时间戳；一个毫秒数；
+				str += "时间戳："+timeflag+"\n";
+				var codns = position.coords;//获取地理坐标信息；
+				var lat = codns.latitude;//获取到当前位置的纬度；
+				str += "纬度："+lat+"\n";
+				var longt = codns.longitude;//获取到当前位置的经度
+				str += "经度："+longt+"\n";
+				var alt = codns.altitude;//获取到当前位置的海拔信息；
+				str += "海拔："+alt+"\n";
+				var accu = codns.accuracy;//地理坐标信息精确度信息；
+				str += "精确度："+accu+"\n";
+				var altAcc = codns.altitudeAccuracy;//获取海拔信息的精确度；
+				str += "海拔精确度："+altAcc+"\n";
+				var head = codns.heading;//获取设备的移动方向；
+				str += "移动方向："+head+"\n";
+				var sped = codns.speed;//获取设备的移动速度；
+				str += "移动速度："+sped;
+				
+				console.log(JSON.stringify(position));	
+				geoLocation.innerHTML= addr.city+"<span class='mui-icon mui-icon-arrowdown'>"
+			}
+			
+			 function goTo(target){
+                var scrollT = document.body.scrollTop|| document.documentElement.scrollTop
+                if (scrollT >target) {
+                    var timer = setInterval(function(){
+                        var scrollT = document.body.scrollTop|| document.documentElement.scrollTop
+                        var step = Math.floor(-scrollT/6);
+                        document.documentElement.scrollTop = document.body.scrollTop = step + scrollT;
+                        if(scrollT <= target){
+                            document.body.scrollTop = document.documentElement.scrollTop = target;
+                            clearTimeout(timer);
+                        }
+                    },20)
+                }else if(scrollT == 0){
+                    var timer = setInterval(function(){
+                        var scrollT = document.body.scrollTop|| document.documentElement.scrollTop
+                        var step = Math.floor(300/3*0.7);
+                        document.documentElement.scrollTop = document.body.scrollTop = step + scrollT;
+                        console.log(scrollT)
+                        if(scrollT >= target){
+                            document.body.scrollTop = document.documentElement.scrollTop = target;
+                            clearTimeout(timer);
+                        }
+                    },20)
+                }else if(scrollT < target){
+                    var timer = setInterval(function(){
+                        var scrollT = document.body.scrollTop|| document.documentElement.scrollTop
+                        var step = Math.floor(scrollT/6);
+                        document.documentElement.scrollTop = document.body.scrollTop = step + scrollT;
+                        if(scrollT >= target){
+                            document.body.scrollTop = document.documentElement.scrollTop = target;
+                            clearTimeout(timer);
+                        }
+                    },20)
+                }else if(target == scrollT){
+                    return false;
+                }
+            }
+			
+			
+			//搜索功能
+			mui('.wrap-search')[0].addEventListener('tap', function() {
+				mui.openWindow({
+					id:'search',
+					url:'../html/search.html'
+				
+				});
+			});
+			//隐现条件筛选
+			mui("#testTap")[0].addEventListener('tap', function(){
+				
+				goTo(558)
+				setTimeout(mui('#generalSort').popover('toggle',document.getElementById('GSortHere')),10000)
+			});
+			
+			document.getElementById("GSortHere").addEventListener('tap', function(){
+				mui('#generalSort').popover('toggle',document.getElementById('GSortHere'));
+				
+			})
+			
+			//document.addEventListener('tap',function(e){console.log("pageX:"+e.detail.touches[0].pageX+"pageY:"+e.detail.touches[0].pageY);})
+			
+			
+			
+			
+			
+			
+			//地址定位功能页面
+			mui('.to-location')[0].addEventListener('tap', function() {
+				mui.openWindow({
+					id:'search',
+					url:'../html/address.html'
+				});
+			});
+			var slider = mui("#slider");
+			slider.slider({
+						interval: 2000
+				});
+
+
+
+		</script>
+</body>
+</html>

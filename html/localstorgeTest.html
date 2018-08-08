@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<p>点击"+"，查询存储中有无商家名称，无则建立，有则只增加数据</p>
+		商家名称<input type="text" name="" id="" value="" />
+		产品名称<input type="text" />
+		产品ID(隐藏)<input />
+		产品数量<input />22
+		<button onclick="addtocart()">添加</button>
+		<script>
+			var obj2 = [{"name3":"3xiaoming1","age":"16"}]
+			   localStorage.setItem("userInfo",JSON.stringify(obj2));
+			    console.log(localStorage)
+			   function addtocart (){
+			   	if(!localStorage.cart){
+			   		var Cartinit =[{"locatorage":1,"time":1}]
+			   		localStorage.setItem("cart",JSON.stringify(obj2))
+			   		addtocart();
+			   	}else{
+			   		var temp = localStorage.getItem("cart")
+			   		console.log(typeof(temp))
+			   		localStorage.setItem("cart",JSON.stringify(temp));
+			   	}
+			   }
+		</script>
+	</body>
+</html>

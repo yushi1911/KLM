@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+		
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			
+			.mui-bar-nav~.mui-content .mui-slider.mui-fullscreen {
+				top: 200px
+			}
+			
+			.mui-bar~.mui-content .mui-fullscreen {
+				top: 44px;
+				height: auto;
+			}
+			
+			.mui-pull-top-tips {
+				position: absolute;
+				top: -20px;
+				left: 50%;
+				margin-left: -25px;
+				width: 40px;
+				height: 40px;
+				border-radius: 100%;
+				z-index: 1;
+			}
+			
+			.mui-bar~.mui-pull-top-tips {
+				top: 24px;
+			}
+			
+			.mui-pull-top-wrapper {
+				width: 42px;
+				height: 42px;
+				display: block;
+				text-align: center;
+				background-color: #efeff4;
+				border: 1px solid #ddd;
+				border-radius: 25px;
+				background-clip: padding-box;
+				box-shadow: 0 4px 10px #bbb;
+				overflow: hidden;
+			}
+			
+			.mui-pull-top-tips.mui-transitioning {
+				-webkit-transition-duration: 200ms;
+				transition-duration: 200ms;
+			}
+			
+			.mui-pull-top-tips .mui-pull-loading {
+				/*-webkit-backface-visibility: hidden;
+				-webkit-transition-duration: 400ms;
+				transition-duration: 400ms;*/
+				margin: 0;
+			}
+			
+			.mui-pull-top-wrapper .mui-icon,
+			.mui-pull-top-wrapper .mui-spinner {
+				margin-top: 7px;
+			}
+			
+			.mui-pull-top-wrapper .mui-icon.mui-reverse {
+				/*-webkit-transform: rotate(180deg) translateZ(0);*/
+			}
+			
+			.mui-pull-bottom-tips {
+				text-align: center;
+				background-color: #efeff4;
+				font-size: 15px;
+				line-height: 40px;
+				color: #777;
+			}
+			
+			.mui-pull-top-canvas {
+				overflow: hidden;
+				background-color: #fafafa;
+				border-radius: 40px;
+				box-shadow: 0 4px 10px #bbb;
+				width: 40px;
+				height: 40px;
+				margin: 0 auto;
+			}
+			
+			.mui-pull-top-canvas canvas {
+				width: 40px;
+			}
+			
+			.mui-slider-indicator.mui-segmented-control {
+				background-color: #fff;
+			}
+			
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+				border-bottom: 2px solid #007aff;
+			}
+			
+			.mui-media-object {
+				line-height: 64px !important;
+				max-width: 64px !important;
+				height: 64px !important;
+			}
+			
+			.list-item span {
+				float: right;
+			}
+			
+			.mui-btn {
+				margin: 0px 5px 0px;
+				padding: 2px 4px;
+				font-size: 14px;
+			}
+			/*.mui-control-item{
+				padding: 0 14px !important;
+			}*/
+			
+			.orderinright {
+				float: right;
+			}
+			
+			.shopTitleInfo {
+				height: 60px;
+				text-align: center;
+				margin-top: 20px;
+			}
+			
+			.DiscountInfo {
+				height: 60px;
+				text-align: center;
+				padding: 0 30px;
+				overflow: hidden;
+			}
+			
+			.type-list {
+				flex: 0 0 80px;
+				width: 80px;
+				background-color: #f2f9f9;
+				text-align: center;
+				white-space: wrap;
+			}
+			
+			.good-list {
+				flex: 1;
+				
+			}
+			.ItemTypeName{
+	    		display: table;
+	    		height: 54px;
+	    		width: 80px;
+	    		line-height: 14px;
+	    		
+	    	}
+	    	.typeText{
+	    		font-size: 12px;
+	    		display: table-cell;
+	    		width: 100%;
+	    		vertical-align: middle;
+	    		
+	    	}
+	    	.ItemTitle{
+	    		padding-left: 14px;
+	    		height: 26px;
+	    		line-height: 26px;
+	    		border-left: 2px solid #d9dde1;
+	    		font-size: 12px;
+	    		color: rgb(147,153,159);
+	    		background: #f3f5f7;
+	    	}
+	    	.goodsItem{
+	    		display: flex;
+	    		margin: 18px;
+	    		margin-left: 90px;
+	    		padding-bottom: 18px;
+	    	}
+	    	.Detailicon{
+	    		
+	    		margin-right: 20px !important;
+	    	}
+	    	.DetailContent{
+	    		flex: 1;
+	    		margin-left: 10px !important;
+	    	}
+	    	.Detailname{
+	    		margin: 2px 0 8px 0;
+	    		height: 14px;
+	    		line-height: 14px;
+	    		font-size: 14px;
+	    		color: rgb(7,14,27);
+	    	}
+	    	.DetailDesc,.DetailExtra{
+	    		line-height: 10px;
+	    		font-size: 10px;
+	    		color: rgb(147,153,159);
+	    		white-space: nowrap;
+	    	}
+	    	.DetailDesc{
+	    		margin-bottom: 8px;
+	    	}
+	    	.DetailExtra .DetailMonthSold{
+	    		margin-right: 12px;
+	    	}
+	    	.Detailprice{
+	    		font-weight: 700;
+	    		line-height: 24px;
+	    	}
+	    	.Detailprice .DetailPriceNow{
+	    		margin-right: 8px;
+	    		font-size: 14px;
+	    		color: rgb(240,20,20);
+	    	}
+	    	.Detailprice .DetailPriceOld{
+	    		text-decoration: line-through;
+	    		font-size: 10px;
+	    		color: rgb(147,153,159);
+	    	}
+	    	.DetailorderNum{
+	    		
+	    		font-size: 14px;
+	    	}
+	    	.type-list ul,.good-list ul{
+	    		-webkit-padding-start:0 ;
+	    		-webkit-margin-before: 0;
+	    		-webkit-margin-after: 0;
+	    		list-style: none;
+	    	}
+	    	.shopItemGrid{
+	    		position: absolute;
+	    		width: 100%;
+	    		height: 100%;
+	    		display: flex !important;
+	    		overflow: hidden;
+	    	}
+	    	.shopCart{
+	    		position: absolute;
+	    		height: 42px;
+	    		bottom: 0px;
+	    		flex-wrap: wrap-reverse;
+	    		z-index: 10;
+	    		background-color: wheat;
+	    		width: 100%;
+	    		line-height: 42px;
+	    		font-size: 18px;
+	    		display: table;
+	    		
+	    	}
+	    	.shopCart .gotoPay{
+	    		width: 30%;
+	    		background: orange;
+	    		text-align: center;
+	    	}
+	    	.shopCart .price{
+	    		width: 70%;
+	    		color: red;
+	    		font-weight: 700;
+	    		padding-left: 10px;
+	    	}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">商家</h1>
+		</header>
+		<div class="mui-content" id="content">
+			<div class="shopTitleInfo">
+				
+				<h4>{{title}}</h4>
+				<p>评价{{rating}} 月售{{monthsales}} 神鸟送约{{EstimatedTime}}分钟</p>
+			
+				<p><span class="mui-badge mui-badge-primary">首单</span>新用户下单立减（不与其他活动同享</p>
+				<p>公告:欢迎光临，天气炎热时请提前下单，谢谢</p>
+
+			</div>
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted mui-segmented-control-primary">
+
+					<a class="mui-control-item mui-active" href="#item1mobile" id="item1mobileH">
+						商品
+					</a>
+					<a class="mui-control-item" href="#item2mobile" id="item2mobileH">
+						评价
+					</a>
+					<a class="mui-control-item" href="#item3mobile" id="item3mobileH">
+						商家
+					</a>
+				</div>
+
+				<div class="mui-slider-group">
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active ">
+						<div class="shopItemGrid">
+							<div class="type-list">
+								<ul>
+									<li v-for="item in types" class="ItemTypeName">
+										<span class="typeText"><span v-show="item.type>0" class="mui-icon"></span>{{item.name}}</span>
+									</li>
+								</ul>
+							</div>
+	
+							<div id="scroll1" class="mui-scroll-wrapper good-list">
+								<div class="mui-scroll">
+									<ul>
+										<li v-for="(item,index) in goods" class="goodsItem" >
+											
+												<img :src="item.avatars.small" class="mui-media-object mui-pull-left" />
+											
+											<div class="DetailContent mui-media-body">
+												<h4 class="Detailname">{{item.name}}</h4>
+												<p class="DetailDesc">简介</p>
+												<div class="DetailExtra">
+													<span>月售{{monthsales}}份</span>
+													<span>好评率{{rating}}%</span>
+												</div>
+												<div class="price">
+													<span>￥{{item.id}}</span>
+													
+													<span  class="mui-pull-right">
+														<button  class="mui-btn mui-btn-primary" type="button"  @tap="handleReduce(index)" :disabled="item.count===0">&nbsp;&nbsp;-&nbsp;&nbsp;</button>
+														<span  >{{item.count}}</span>
+														<button class="mui-btn mui-btn-primary "   type="button" @tap="handleAdd(index)">&nbsp;+&nbsp;</button>
+													</span>
+													
+													<!--<span class="DetailorderNum mui-pull-right">
+														<button class="mui-badge mui-badge-primary" type="button">-</button>
+															<span ></span>
+														<button  class="mui-badge mui-badge-primary" type="button">+</button>
+													</span>-->
+												</div>
+											</div>	
+										</li>
+										<li >
+											
+											<p> &nbsp;</p>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="shopCart">
+								<span class="mui-pull-left price">
+									<span>合计:￥</span><span id="totalPrice">{{total}}</span>
+									</span>
+								<span class="mui-pull-right gotoPay" id="settlement" @tap="settlementPrice(total)" >去结算</span>
+							</div>
+						</div>
+					</div>
+					<div id="item2mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-1
+									</li>
+
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-13
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-14
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-15
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-16
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-17
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-18
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-19
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-20
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item3mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-1
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-2
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-3
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-4
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-5
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-6
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-7
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-8
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-9
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-10
+									</li>
+
+								</ul>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script>
+			var payment_detail = null;
+			var name;
+			mui.init();
+			
+
+			function getDefaultData() {
+				
+				return {
+					cart:[],
+					title: '',
+					genres: '',
+					cover: '',
+					rating: '',
+					types: [],
+					goods: [],
+					monthsales: '',
+					EstimatedTime: '',
+					price: '',
+					total:''
+					
+					
+				}
+			}
+			
+//			 Vue.directive('mui', {        v-mui="input" 自动获取，然后input后面的图标会加上。就相当于在这个div所在的元素上添加一个input事件。
+//		        bind: function (el, props) {
+//		            setTimeout(() => { mui(el)[props.value](); })
+//		        }
+//		
+//		    });
+
+			var data_detail = new Vue({
+				el: '#content',
+				data: getDefaultData(),
+				methods: {
+					handleReduce: function(index) {
+						if(this.goods[index].count === 0) {
+							return
+						}else {
+							this.goods[index].count--
+							this.total=Number(this.total)-Number(this.goods[index].id)
+						};	
+					},
+					handleAdd: function(index) {
+						this.goods[index].count++;
+						this.total=Number(this.total)+Number(this.goods[index].id)	
+					},
+					resetData: function() { //重置数据
+						Object.assign(this.$data, getDefaultData())
+					},
+					addToCart:function(){
+						
+//						console.log(cart)
+//						
+//						for (var i=0;i<this.goods.length;i++) {
+//							if(this.goods[i].count > 0){
+//								var build ={"shopName":this.title,"goodsName":this.goods[i].name,"count":Number(this.goods[i].count),"price":this.goods[i].id,"Sumprice":this.goods[i].id*this.goods[i].count}
+//								var temp = build
+//									this.cart.push(temp)
+//								}
+//							console.log(cart[i].shopName+':'+cart[i].goodsName+':'+typeof(cart[i].count)+':'+cart[i].price+':'+cart[i].Sumprice)	
+//						};
+						
+//						for(var i=0;i<cartz.length;i++){
+//							if(cartz[i].count == 0){
+//							cartz.splice(cartz[i],-1)
+//							console.log(cartz[i].shopName+':'+cartz[i].goodsName+':'+cartz[i].count+':'+cartz[i].price+':'+cartz[i].Sumprice)
+//							continue
+//							}		
+//						}
+						//console.log(cartz[0].shopName)
+							//JSON.stringify(cartz)
+							
+//								 for(var key in cartz){
+//							           
+//							           console.log(key + ' : ' + cartz[key][key]);
+//							          
+//							           
+//							      }
+						
+
+						
+					   //localStorage.setItem("cart",JSON.stringify(data.cart));
+					    //console.log(localStorage.getItem("cart"))
+					},
+					open_detail: function(item) {
+						//打开商品详情页面
+						mui.openWindow({
+							id: 'goods-detail',
+							url: './goods-detail.html',
+							extras: {
+								goodsId: item.id
+							}
+						});
+					},
+					settlementPrice: function(total){
+						// 首先判定用户是否登录
+		//				var userInfo = plus.storage.getItem("userInfo");
+		//					if (!userInfo) {
+		//				// http://www.html5plus.org/doc/zh_cn/nativeui.html#plus.nativeUI.confirm
+		//						plus.nativeUI.confirm("您还未登录，是否登录？", function(event) {
+		//							if (event.index == 0) {
+		//								mui.openWindow({
+		//									url: "../account/login.html",
+		//									id: "login",
+		//									waiting: {
+		//										autoShow: false
+		//									},
+		//									extras: {
+		//										entrance: "shop"
+		//									}
+		//								});
+		//							}
+		//						}, "", ["现在就去", "我不买了"]);
+		//						return;
+		//					}
+						if(this.total == 0){
+							plus.nativeUI.toast("请选择商品");
+							return;
+						}else {
+							mui.fire(payment_detail,'paymentId',{
+								shopName:data_detail.title,
+								shopTotal:total
+							});
+							console.log(data_detail.title)
+							//打开
+							mui.openWindow({
+								url: "paymentDetail.html",
+								id:'paymentDetail',
+								waiting: {
+										autoShow: false
+								}
+							});
+						}
+					}
+					
+				}
+				
+				
+			});
+
+			mui.plusReady(function() {
+				
+				//给detailPage赋值,根据ID获取详情页面
+				paymentPage = plus.webview.getWebviewById('paymentDetail');
+				if(!payment_detail){
+					payment_detail = mui.preload({
+						id:'paymentDetail',
+						url:'paymentDetail.html'
+					});
+				}
+				name = plus.webview.currentWebview().name;
+
+				var deceleration = mui.os.ios ? 0.003 : 0.0009;
+				mui('.mui-scroll-wrapper').scroll({
+					bounce: false,
+					indicators: false, //是否显示滚动条
+					deceleration: deceleration
+				});
+				
+				var self = plus.webview.currentWebview();
+				//添加hide事件，清空页面数据，滚到最顶部
+				self.addEventListener('hide', function(e) {
+//					data_detail.addToCart();
+					window.scrollTo(0, 0);
+					data_detail.resetData();
+				}, false);
+				
+			})
+			
+			
+
+
+
+			//添加movieId自定义事件
+			window.addEventListener("shopId", function(event) {
+				//获取事件参数
+
+				var id = event.detail.id;
+				plus.nativeUI.showWaiting( "正在加载...", {loading:{icon:'../images/waiting.png',interval:"100000ms",height:'150px'},color:"#000000",background:"rgba(0,0,0,0)"});
+				
+
+//				plus.nativeUI.showWaiting('加载中', {
+//					width: '100px',
+//					height: '100px'
+//				});
+				if(window.plus && plus.networkinfo.getCurrentType() === plus.networkinfo.CONNECTION_NONE) {
+					plus.nativeUI.toast('似乎已断开与互联网的连接', {
+					verticalAlign: 'top'
+						});
+					return;
+				}
+				//根据id请求电影详情数据
+					mui.getJSON('http://api.douban.com/v2/movie/subject/' + id, function(resp) {
+						data_detail.title = resp.title;
+						data_detail.cover = resp.images.large;
+						data_detail.rating = resp.rating.average;
+						data_detail.EstimatedTime = resp.rating.stars;
+						data_detail.monthsales = resp.ratings_count;
+						data_detail.summary = resp.summary;
+						data_detail.countries = resp.countries.toString('/,/g', ' / ');
+						data_detail.year = resp.year;
+						data_detail.genres = resp.genres.toString('/,/g', ' / ');
+						data_detail.goods = resp.casts;
+						data_detail.types = resp.directors;
+						data_detail.price = resp.collect_count;
+						for (var i=0;i<data_detail.goods.length;i++) {
+								data_detail.goods[i]['count'] = 0
+	
+							}
+						plus.nativeUI.closeWaiting();
+	
+					})
+				
+			});
+			
+		</script>
+	</body>
+
+</html>

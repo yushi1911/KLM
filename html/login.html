@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>登录</title>
+		<link rel="stylesheet" type="text/css" href="../css/mui.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+		<style>
+			body{background-color: white;}
+			.mui-content{background-color: white;}
+			.login-bg{
+				height: 800px;
+				background: url(../images/loginBKGup.png) no-repeat top;
+				background-size: 100%;
+				position: relative;
+				
+				
+			}
+			.login-headimg{
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				top: 15%;
+				left: 0;
+				right: 0;
+				margin: auto;
+				
+				
+			}
+			.login-headimg img{
+				width: 100%;
+				border: 2px solid #FFFFFF;
+				border-radius: 50%;
+				margin-bottom: 10px;
+			}
+			.login-inputbox{
+				position: absolute;
+				width: 70%;
+				
+				top: 40%;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+			
+			
+			.oauth-area {
+				position: absolute;
+				bottom: 20px;
+				left: 0px;
+				text-align: center;
+				width: 100%;
+				padding: 0px;
+				margin: 0px;
+			}
+			
+			.oauth-area .oauth-btn {
+				display: inline-block;
+				width: 50px;
+				height: 50px;
+				background-size: 30px 30px;
+				background-position: center center;
+				background-repeat: no-repeat;
+				margin: 0px 20px;
+				/*-webkit-filter: grayscale(100%); */
+				border: solid 1px #ddd;
+				border-radius: 25px;
+			}
+			
+			.oauth-area .oauth-btn:active {
+				border: solid 1px #aaa;
+			}
+			
+			.oauth-area .oauth-btn.disabled {
+				background-color: #ddd;
+			}
+			
+			
+			
+			.mui-input-group .mui-input-row:after{
+				left: 0;
+				height: 0;
+			}
+			.mui-input-row{
+				margin-bottom: 20px;
+				border-bottom: 1px solid deepskyblue;
+				border-radius:10px ;	
+			}
+			.mui-input-row label{
+				width: 5%;
+			}
+			.mui-input-row label ~ input{
+				width: 85%;
+			}
+			.mui-input-group{
+				background: transparent;
+			}
+			.mui-input-group:before,.mui-input-group:after{
+				height: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">登录</h1>
+		</header>
+		<div class="mui-content ">
+			<div class="login-bg">
+				<!--<img src="../images/loginBKGup.png" width="100%"/>-->
+				<div class="login-headimg">
+					<img src="../images/logo.png" width=""/>
+					<p class="mui-text-center mui-h3" style="font-weight: bold; color: deepskyblue;">渴了吗</p>
+				</div>
+				<div class="login-inputbox">
+					<form class="mui-input-group">
+						<div class="mui-input-row">
+							<label><span class="mui-icon iconfont icon-wode" style="color: deepskyblue;"></span></label>
+							
+							<input type="text" class="mui-input-clear" placeholder="手机/邮箱/账户名" />
+						</div>
+						<div class="mui-input-row mui-input-password">
+							<label><span class="mui-icon iconfont icon-denglumima" style="color: deepskyblue;"></span></label>
+							<input type="password" class="mui-input-clear" placeholder="密码" data-input-password="3" data-input-clear="5"/>
+						</div>
+						
+						
+					</form>
+					<div class="mui-button-row">
+						<div class="mui-text-center" style="margin-bottom: 20px;"><button class="mui-btn  mui-btn-primary " id='login'>登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="mui-btn  mui-btn-outlined ">我要开店</button></div>
+						<div class="link-area">
+							<a class="mui-pull-left" id='reg'>注册账户</a><a class="mui-pull-right" id='forgetPassword'>忘记密码</a>
+						</div>
+					</div>
+					<div class="mui-content-padded oauth-area">
+
+					</div>
+							
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	
+</html>
