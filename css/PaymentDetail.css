@@ -1,0 +1,35 @@
+/*修改列表居右文字的页边距*/
+.toRight{
+	margin-right: -25px;
+    font-size: 15px;
+}
+.WaytoPay{
+	position: absolute;
+	top:22px;
+	right: 65px;
+}
+.mui-table-view-cell.mui-checkbox input[type=checkbox]{
+	top: 24px;
+	right: 0;
+}
+.TopSection{
+	color: #fff;
+	position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+
+.TopSection .mui-h6{
+	color: #fff;
+}
+.TopSection .mui-btn{
+	color: #fff;
+	padding: 0 5px;
+}
+.address{
+	text-align: right;
+}
+.PaymentList .mui-badge-primary{
+	border-radius: 5px;
+    padding: 0 3px;
+}

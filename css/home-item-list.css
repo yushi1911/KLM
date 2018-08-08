@@ -1,0 +1,32 @@
+.shop-list-item,.shop-list-item p{
+	font-size: 12px;
+	line-height: 22px;
+}
+.shop-list-item div{
+	margin-bottom: 3px;
+}
+.shop-list-item b{
+	font-size: 16px;
+}
+.shop-list-item .mui-btn{
+	font-size: 10px;
+	padding: 0;
+	margin: 0;
+	border-radius: 1px;
+	vertical-align: middle;
+	line-height: 1.1;
+}
+.shop-list-item .mui-icon{
+	font-size: 14px;
+	color: gray;
+}
+.shop-list-item .mui-media-object{
+	line-height: 80px;
+	max-width: 80px;
+	height: 80px;
+	border-radius: 5px;
+}
+.shop-list-item .mui-badge{
+	font-size: 12px;
+	border-radius: 50%;
+}

@@ -1,0 +1,48 @@
+.bottomend{
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	vertical-align: top;
+	background: #efeff4
+}
+.order-icon{
+	list-style: none;
+	text-align: center;
+	display: inline-block;
+	width: 20%;
+	float:left;
+	padding: 10px;
+}
+
+.order-ico p{font-size: 12px;}
+
+.orderinright{
+	float: right;
+}
+
+.wrap-search {
+	margin: 8px;
+	width: 100%;
+	background: darkgray;
+	height: 30px;
+	border-radius: 5px;
+	text-align: center;
+}
+#HeaderHere li{
+	list-style: none;
+	float: left;
+	text-align: center;
+}
+.HeaderMiddle{
+	width:55%;
+	
+}
+.HeaderLeft{
+	width: 25%;
+	
+}
+.HeaderRight{
+	width: 20%;
+	
+}

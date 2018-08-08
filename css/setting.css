@@ -1,0 +1,116 @@
+.headerICON{
+	font-size: 30px !important;line-height: 46px;margin-left: 20px !important;
+}
+.headerICON .mui-badge{
+	top: 5px;
+}
+#moneyleft,#redbag,#score{
+	font-size: 16px;
+	font-weight: bold;
+}
+#moneyleft,#totalasset{
+	color: deepskyblue;
+}
+#redbag{
+	color: lightcoral;
+}
+#score{
+	color: orange;
+}
+#totalasset{
+	font-size: 16px;
+	font-weight: bold;
+}
+.accont-info{
+	width: 100%;
+	height: 180px;
+	position: relative;
+	left: 0;
+	
+	background-color: #3673FF;
+	margin: 0 0 50px 0;
+}
+.accont-info .head-img{
+	margin: 20px;
+}
+.accont-info b,.accont-info p,.accont-info span{
+	font-size: 10px;
+	color: #FFFFFF;
+}
+.accont-info b{
+	font-size: 18px;
+}
+.accont-info .mui-media-body{
+	padding-top: 20px;	
+}
+.accont-info .mui-progressbar{
+	width: 50%;
+	height:8px ;
+	border-radius: 5px;
+}
+.mui-progressbar-warning span {
+	background-color: #f0ad4e;
+}
+.accont-detail{
+	width: 90%;
+	height: 80px;
+	position: absolute;
+	left: 5%;
+	top: 130px;
+	background: #FFFfff;
+	display: block;
+	z-index: 1;
+	border-radius: 5px;
+	box-shadow: 1px 1px 5px #888888;
+	-webkit-box-shadow: 1px 1px 5px #888888;
+	}
+.accont-detail li{
+	width: 33%;
+	float: left;
+	list-style: none;
+	text-align: center;
+	color: #000;
+	padding: 5px;
+	
+	margin-top: 15px;
+	vertical-align: middle;
+}
+.accont-detail li img{
+	width: 30px;
+}
+.accont-detail p{
+	color: #000000;
+	font-size: 14px;
+	margin: 0;
+}
+.memberRank{
+	position: absolute;
+	left: 16%;
+	top: 45%;
+}
+.myorders{
+	height: 120px;
+}
+.myorders {
+	padding: 15px 20px ;
+}
+.myorders h4{
+	margin: 0 0 15px ;
+}
+h4{
+	margin: 15px ;
+}
+.myorders li{
+	list-style: none;
+	float: left;
+	width: 20%;
+	text-align: center;
+	
+}
+
+.mui-grid-view.mui-grid-9,.mui-grid-view.mui-grid-9 .mui-table-view-cell{
+	background-color: #FFFFFF;
+	border: none;
+}
+
+
