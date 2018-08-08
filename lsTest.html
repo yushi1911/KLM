@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button onclick="addtest()">添加</button>
+		<button onclick="loca()">添加11111111111111111111111</button>
+	</body>
+	<script type="text/javascript">
+		LSinit()
+		function LSinit (){
+			var LSformat = {"coordsType":" ","address":{"country":" ","province":" ","city":"","district":" ","street":" ","streetNum":" ","poiName":" ","cityCode":" "},"addresses":" ","coords":{"latitude":39.835319,"longitude":116.262363,"accuracy":49,"altitude":0,"heading":null,"speed":0,"altitudeAccuracy":0},"timestamp":1533006259537}
+			var SCformat = []
+			var lSinit = localStorage.getItem("GEOlocation");
+			var SCinit = localStorage.getItem("ShopCart");
+			if(!lSinit){localStorage.setItem("GEOlocation",JSON.stringify(LSformat))};
+			if(!SCinit){localStorage.setItem("ShopCart",JSON.stringify(SCformat))}
+			
+		}
+		
+		function loca(){
+			var loca = JSON.parse(localStorage.getItem("GEOlocation"))
+			console.log(loca.coords)
+		}
+		
+		
+		function addtest(){
+			var dataBox =[]
+			var data1= {"name":"zhangwu","age":"28"}
+			var data2= {"name":"lisi","age":"22"}
+			var loadcache = JSON.parse(localStorage.getItem("ShopCart"))
+			
+			console.log(loadcache.length)
+			//console.log(data1.name)
+			for(var i=0;i<loadcache.length;i++){
+				
+				if(loadcache[i].name == data2.name && loadcache[i].age == data2.age){
+					loadcache.push(data1)
+					}
+				console.log(loadcache[i].name)
+			}
+			
+			
+			localStorage.setItem("ShopCart",JSON.stringify(loadcache))
+			 
+			
+			
+		}
+		function verify(){
+			var loadcache = JSON.parse(localStorage.getItem("ShopCart"))
+		}
+
+//localStorage.setItem("coffeeType", "mocha");
+//  localStorage.setItem("coffeePrice", "28");
+// 
+//  verify();   //验证本地存储
+//  //localStorage.removeItem("coffeeType");
+//  verify();   //验证coffeeType是否存在
+//  localStorage.clear();
+//  verify();   //验证coffeeType和coffeePrice是否存在
+// 
+//  //自定义验证函数，验证coffeeType和coffeePrice的数据是否存在
+//  function verify(){
+//      var type = localStorage.getItem("coffeeType");
+//      var price = localStorage.getItem("coffeePrice");
+//      type = type ? type : '不存在';
+//      price = price ? price : '不存在';
+// 
+//      alert( "coffeeType: " + type + "\n\n" + "coffeePrice: " + price );
+//  }
+	</script>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>入口</title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+		<style>
+			nav{border: none;}
+			nav a{display: inline-block;text-align: center;}
+		</style>
+	</head>
+
+	<body>
+		
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-center mui-tab-item mui-active" data-id="deliverorders">
+				<span class="mui-icon iconfont icon-dingdan" ></span>
+				<span class="mui-tab-label" >我的订单</span>
+			</a>
+			<a class="mui-center mui-tab-item" data-id="deliveroperate">
+				<span class="mui-icon iconfont icon-shujuyunying" ></span>
+				<span class="mui-tab-label">运营数据</span>
+			</a>
+			<a class="mui-center mui-tab-item" data-id="deliversetting">
+				<span class="mui-icon iconfont icon-qishou" ></span>
+				<span class="mui-tab-label">个人中心</span>
+			</a>
+		</nav>
+		<script src="js/mui.min.js"></script>
+		
+		<script type="text/javascript" charset="utf-8">
+			
+			
+			mui.init();
+			
+			mui.plusReady(function() {
+				var subInfos3 = [{
+					url: 'html/deliverorders.html',
+					id: 'deliverorders'
+				}, {
+					url: 'html/deliversetting.html',
+					id: 'deliversetting'
+				}, {
+					url: 'html/deliveroperate.html',
+					id: 'deliveroperate'
+				}];
+				var subStyles = {
+					top: '0px',
+					bottom: '51px',
+					scrollIndicator: "none"
+				};
+				
+
+				// 根据id查询子页面的信息
+				var getSubInfoById = function(infoList, id) {
+					var result = null;
+					for(var i = 0, len = infoList.length; i < len; i++) {
+						var _info = infoList[i];
+						if(_info.id === id) {
+							result = _info;
+							break;
+						}
+					}
+					return result;
+				};
+
+				var ThirdmainWv = plus.webview.currentWebview();
+				var activeTab = '';
+
+				// 默认只加载首页webview
+				var ThirdhomeWv = plus.webview.create(subInfos3[0].url, subInfos3[0].id, subStyles);
+				ThirdmainWv.append(ThirdhomeWv);
+				activeTab = subInfos3[0].id;
+
+				// 点击切换，动态创建其它webview；
+				mui('.mui-bar-tab').on('tap', 'a.mui-tab-item', function(e) {
+					var _self = this;
+					var targetTab = _self.getAttribute('data-id');
+					if(targetTab === activeTab) {
+						return;
+					}
+					
+					var _3subWv = plus.webview.getWebviewById(targetTab);
+					// 若webview不存在，则创建；
+					if(!_3subWv) {
+						var _subInfo3 = getSubInfoById(subInfos3, targetTab);
+						_3subWv = plus.webview.create(_subInfo3.url, _subInfo3.id, subStyles);
+						ThirdmainWv.append(_3subWv);
+					}
+					_3subWv.show();
+					// 隐藏之前的webview
+					plus.webview.getWebviewById(activeTab).hide('none');
+					activeTab = targetTab;
+					console.log(targetTab)
+				});
+			});
+		</script>
+	</body>
+
+</html>
